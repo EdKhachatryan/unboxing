@@ -1,4 +1,4 @@
 export const environment = {
   enableAngularProduction: true,
-  apiEndpoint: 'https://api.ivp.test.scaliolabs.com',
+  apiEndpoint: 'https://api-staging.csgoroll.com/graphql',
 };
