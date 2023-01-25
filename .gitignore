@@ -6,6 +6,7 @@
 # compiled output
 /dist
 /out-tsc
+/.angular
 
 # dependencies
 /node_modules
