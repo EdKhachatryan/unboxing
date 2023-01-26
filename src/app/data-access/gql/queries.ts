@@ -1,4 +1,6 @@
-import {gql} from "apollo-angular";
+import {gql, Query} from "apollo-angular";
+import {Injectable} from "@angular/core";
+/*
 
 export const Current_User = gql`
 query {
@@ -16,18 +18,18 @@ query {
 `
 
 export const Get_Boxes = gql`
-query {
-  boxes(free: false, purchasable: true, openable: true) {
-    edges {
-      node {
-        id
-        name
-        iconUrl
-        cost
+  query {
+    boxes(free: false, purchasable: true, openable: true) {
+      edges {
+        node {
+          id
+          name
+          iconUrl
+          cost
+        }
       }
     }
   }
-}
 `
 
 export const Open_Box = gql`
@@ -56,3 +58,25 @@ subscription OnUpdateWallet {
     }
   }
 `
+
+*/
+
+@Injectable({
+  providedIn: 'root',
+})
+export class GetBoxesGQL extends Query<any> {
+  // @ts-ignore
+  document = gql`
+  query {
+  boxes(free: false, purchasable: true, openable: true) {
+    edges {
+      node {
+        id
+        name
+        iconUrl
+        cost
+      }
+    }
+  }
+}`;
+}

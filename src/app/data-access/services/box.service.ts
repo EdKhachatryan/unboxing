@@ -1,44 +1,41 @@
 import {Injectable} from "@angular/core";
 import {Apollo} from "apollo-angular";
-import {Observable} from "rxjs";
-import {Get_Boxes} from "../gql/queries";
+import {gql, Mutation, Query} from 'apollo-angular';
+import {Observable, of, switchMap, tap} from "rxjs";
+import {DocumentNode} from "graphql/language/ast";
+import {GetBoxesGQL} from "../gql/queries";
+import {Box} from "../models/boxes.interface";
 
 
+const Get_Boxes = gql`
+query {
+  boxes(free: false, purchasable: true, openable: true) {
+    edges {
+      node {
+        id
+        name
+        iconUrl
+        cost
+      }
+    }
+  }
+}
+`
 
 @Injectable({
   providedIn: 'root',
 })
-export class ApolloService {
-  constructor(private apollo: Apollo) {
+export class BoxesService {
+  constructor(private apollo: Apollo,
+  private getBoxes: GetBoxesGQL) {
   }
- // todo change function structure
-  getAllBoxes(){
-    console.log("-----------")
-   /* this.apollo
-      .query<any>({
-        query: Get_Boxes,
-        // fetchPolicy: 'network-only',
-      }).subscribe(response => {
-      console.log(response.data.boxes.edges)
-      // subscriber.next(response);
-    });
-    return new Observable<any>(subscriber => {
-      try {
-        console.log("asdasdasd")
-        this.apollo
-          .query<any>({
-            query: Get_Boxes,
-            // fetchPolicy: 'network-only',
-          })
-          .subscribe(response => {
-            console.log(response)
-            subscriber.next(response);
-          });
-      } catch (err: any) {
-        console.log("!!!!!!!!!!!")
-        subscriber.error(err);
-      }
-    });*/
+
+  getAllBoxes(): Observable<any>{
+     return this.getBoxes.fetch().pipe(tap(result => {
+       return result.data.boxes.edges
+     }))
   }
 
 }
+
+
