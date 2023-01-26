@@ -12,9 +12,9 @@ export class ApolloService {
   constructor(private apollo: Apollo) {
   }
  // todo change function structure
-  getAllBoxes(): Observable<any> {
+  getAllBoxes(){
     console.log("-----------")
-    this.apollo
+   /* this.apollo
       .query<any>({
         query: Get_Boxes,
         // fetchPolicy: 'network-only',
@@ -38,7 +38,7 @@ export class ApolloService {
         console.log("!!!!!!!!!!!")
         subscriber.error(err);
       }
-    });
+    });*/
   }
 
 }
