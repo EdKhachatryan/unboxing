@@ -11,23 +11,25 @@ import {HttpClientModule} from "@angular/common/http";
 import {HeaderComponent} from "./shared/header/header.component";
 import {FooterComponent} from "./shared/footer/footer.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {CardComponent} from "./shared/card/card.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     BoxListingComponent,
     BoxDetailsComponent,
-    HeaderComponent,
+    CardComponent,
     FooterComponent,
+    HeaderComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     GraphQLModule,
     HttpClientModule
   ],
-  providers: [Apollo,],
+  providers: [Apollo],
   bootstrap: [AppComponent]
 })
 export class AppModule {
