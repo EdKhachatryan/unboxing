@@ -5,7 +5,7 @@ import {BoxesService, } from "../../data-access/services/box.service";
 import {Store} from "@ngrx/store";
 import {selectAllBoxes} from "../../data-access/store/boxes/boxes.selectors";
 import {loadBoxes} from "../../data-access/store/boxes/boxes.actions";
-import {AppState} from "../../data-access/store/app.state";
+import {BoxesState} from "../../data-access/models/boxes.interface";
 
 @Component({
   selector: 'app-box-details',
@@ -14,17 +14,14 @@ import {AppState} from "../../data-access/store/app.state";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BoxListingComponent implements OnInit, OnDestroy {
-  public allBoxes$ = this.store.select(selectAllBoxes);
+  public allTodos$ = this.store.select(selectAllBoxes);
 
-  constructor(private store: Store<AppState>
+  constructor(private store: Store<BoxesState>
              ) {
     this.store.dispatch(loadBoxes());
   }
 
   ngOnInit() {
-    this.allBoxes$.pipe().subscribe((res) => {
-      console.log(res);
-    })
 
   }
 

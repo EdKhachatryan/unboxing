@@ -8,18 +8,21 @@ export const initialState: BoxesState = {
   status: 'pending',
 };
 
+export default function reducer(state = initialState) {}
 
 export const boxReducer = createReducer(
   initialState,
 
   on(loadBoxes, (state) => ({ ...state, status: 'loading' })),
 
-  on(loadBoxesSuccess, (state, { boxes }) => ({
-    ...state,
-    boxes: boxes,
-    error: '',
-    status: 'success',
-  })),
+  on(loadBoxesSuccess, (state, { boxes }) => {
+    return ({
+      ...state,
+      boxes: boxes,
+      error: '',
+      status: 'success',
+    })
+  }),
 
   on(loadBoxesFailure, (state, { error }) => ({
     ...state,

@@ -5,7 +5,7 @@ export const loadBoxes = createAction('[Listing Page] Load Boxes');
 
 export const loadBoxesSuccess = createAction(
   '[Boxes API] boxes Load Success',
-  props<{ boxes: Box[] }>()
+  props<{ boxes: any }>()
 );
 
 export const loadBoxesFailure = createAction(

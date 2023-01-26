@@ -1,32 +1,13 @@
 import {Injectable} from "@angular/core";
-import {Apollo} from "apollo-angular";
-import {gql, Mutation, Query} from 'apollo-angular';
-import {Observable, of, switchMap, tap} from "rxjs";
-import {DocumentNode} from "graphql/language/ast";
+import {Observable, } from "rxjs";
 import {GetBoxesGQL} from "../gql/queries";
-import {Box} from "../models/boxes.interface";
 
-
-const Get_Boxes = gql`
-query {
-  boxes(free: false, purchasable: true, openable: true) {
-    edges {
-      node {
-        id
-        name
-        iconUrl
-        cost
-      }
-    }
-  }
-}
-`
 
 @Injectable({
   providedIn: 'root',
 })
 export class BoxesService {
-  constructor(private apollo: Apollo,
+  constructor(
   private getBoxes: GetBoxesGQL) {
   }
 
