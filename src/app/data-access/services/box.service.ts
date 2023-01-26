@@ -1,22 +1,9 @@
 import {Injectable} from "@angular/core";
 import {Apollo} from "apollo-angular";
-import {gql, Mutation, Query} from 'apollo-angular';
 import {Observable} from "rxjs";
+import {Get_Boxes} from "../gql/queries";
 
-const Get_Boxes = gql`
-query {
-  boxes(free: false, purchasable: true, openable: true) {
-    edges {
-      node {
-        id
-        name
-        iconUrl
-        cost
-      }
-    }
-  }
-}
-`
+
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +19,7 @@ export class ApolloService {
         query: Get_Boxes,
         // fetchPolicy: 'network-only',
       }).subscribe(response => {
-      console.log(response)
+      console.log(response.data.boxes.edges)
       // subscriber.next(response);
     });
     return new Observable<any>(subscriber => {
