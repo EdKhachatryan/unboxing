@@ -5,6 +5,7 @@ import {BoxesService, } from "../../data-access/services/box.service";
 import {Store} from "@ngrx/store";
 import {selectAllBoxes} from "../../data-access/store/boxes/boxes.selectors";
 import {loadBoxes} from "../../data-access/store/boxes/boxes.actions";
+import {AppState} from "../../data-access/store/app.state";
 
 @Component({
   selector: 'app-box-details',
@@ -15,25 +16,19 @@ import {loadBoxes} from "../../data-access/store/boxes/boxes.actions";
 export class BoxListingComponent implements OnInit, OnDestroy {
   public allBoxes$ = this.store.select(selectAllBoxes);
 
-  constructor(private store: Store
+  constructor(private store: Store<AppState>
              ) {
     this.store.dispatch(loadBoxes());
   }
 
   ngOnInit() {
+    this.allBoxes$.pipe().subscribe((res) => {
+      console.log(res);
+    })
 
-    // var body = document.getElementsByTagName("body")[0];
-    // body.classList.add("landing-page");
-
-    // var canvas: any = document.getElementById("chartBig");
-    // var ctx = canvas.getContext("2d");
-    // var gradientFill = ctx.createLinearGradient(0, 350, 0, 50);
-    // gradientFill.addColorStop(0, "rgba(228, 76, 196, 0.0)");
-    // gradientFill.addColorStop(1, "rgba(228, 76, 196, 0.14)");
   }
 
   ngOnDestroy() {
-    // var body = document.getElementsByTagName("body")[0];
-    // body.classList.remove("landing-page");
+
   }
 }

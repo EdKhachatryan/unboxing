@@ -22,10 +22,9 @@ export class BoxesEffects {
       exhaustMap(() =>
         from(this.boxService.getAllBoxes()).pipe(
           map((boxes) => {
-            console.log(boxes)
-            return loadBoxesSuccess({boxes: boxes})
+            console.log(boxes?.data);
+            return loadBoxesSuccess({boxes: boxes.data})
           }),
-          // Or... if it errors return a new failure action containing the error
           catchError((error) => of(loadBoxesFailure({ error })))
         )
       )

@@ -12,6 +12,12 @@ import {HeaderComponent} from "./shared/header/header.component";
 import {FooterComponent} from "./shared/footer/footer.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CardComponent} from "./shared/card/card.component";
+import {StoreModule} from "@ngrx/store";
+import {boxReducer} from "./data-access/store/boxes/boxes.reducer";
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {environment} from "../environments/envitonment";
+import {EffectsModule} from "@ngrx/effects";
+import {BoxesEffects} from "./data-access/store/boxes/boxes.effects";
 
 @NgModule({
   declarations: [
@@ -27,7 +33,9 @@ import {CardComponent} from "./shared/card/card.component";
     BrowserModule,
     BrowserAnimationsModule,
     GraphQLModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({ boxes: boxReducer }),
+    EffectsModule.forRoot([BoxesEffects]),
   ],
   providers: [Apollo],
   bootstrap: [AppComponent]

@@ -31,9 +31,7 @@ export class BoxesService {
   }
 
   getAllBoxes(): Observable<any>{
-     return this.getBoxes.fetch().pipe(tap(result => {
-       return result.data.boxes.edges
-     }))
+     return this.getBoxes.fetch()
   }
 
 }

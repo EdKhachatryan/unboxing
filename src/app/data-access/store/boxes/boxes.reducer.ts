@@ -9,7 +9,7 @@ export const initialState: BoxesState = {
 };
 
 
-export const todoReducer = createReducer(
+export const boxReducer = createReducer(
   initialState,
 
   on(loadBoxes, (state) => ({ ...state, status: 'loading' })),

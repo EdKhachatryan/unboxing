@@ -4,11 +4,11 @@ import {Box} from "../../models/boxes.interface";
 export const loadBoxes = createAction('[Listing Page] Load Boxes');
 
 export const loadBoxesSuccess = createAction(
-  '[Todo API] Todo Load Success',
+  '[Boxes API] boxes Load Success',
   props<{ boxes: Box[] }>()
 );
 
 export const loadBoxesFailure = createAction(
-  '[Todo API] Todo Load Failure',
+  '[Boxes API] boxes Load Failure',
   props<{ error: string }>()
 );
